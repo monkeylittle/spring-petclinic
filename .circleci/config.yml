@@ -10,11 +10,11 @@ jobs:
     steps:
       - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          requires:
-            - maven/test
 
 workflows:
   build_test_release:
     jobs:
       - maven/test
       - docker_build
+          requires:
+            - maven/test
