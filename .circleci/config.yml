@@ -10,7 +10,6 @@ jobs:
     steps:
       - checkout
       - docker/check
-      - docker/dockerlint
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
 
@@ -22,7 +21,7 @@ workflows:
             - persist_to_workspace:
                 root: ./
                 paths:
-                  - target
+                  - target/$CIRCLE_PROJECT_REPONAME*.jar
       - docker_build:
           requires:
             - maven/test
