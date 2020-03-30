@@ -16,5 +16,5 @@ workflows:
     jobs:
       - maven/test
       - docker_build
-        requires:
-          - maven/test
+          requires:
+            - maven/test
