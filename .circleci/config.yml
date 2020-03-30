@@ -19,9 +19,9 @@ workflows:
       - maven/test:
           post-steps:
             - persist_to_workspace:
-                root: ./
+                root: ./target
                 paths:
-                  - target/$CIRCLE_PROJECT_REPONAME*.jar
+                  - *.jar
       - docker_build:
           requires:
             - maven/test
