@@ -9,9 +9,8 @@ jobs:
     executor: docker/docker
     steps:
       - checkout
-      - run:
-          command: echo $(ls -la)
       - docker/check
+      - docker/dockerlint
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
 
@@ -19,6 +18,15 @@ workflows:
   build_test_release:
     jobs:
       - maven/test
+          post-steps:
+            - persist_to_workspace:
+                root: workspace
+                paths:
+                  - ./target
       - docker_build:
           requires:
             - maven/test
+          pre-steps:
+            - attach_workspace:
+                at: /tmp/target
+            - run: echo $(ls -la)
