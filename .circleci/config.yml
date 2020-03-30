@@ -14,7 +14,7 @@ jobs:
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
       - docker/push:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: $CIRCLE_SHA1
 
 workflows:
