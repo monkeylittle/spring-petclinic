@@ -8,7 +8,9 @@ jobs:
   docker_build:
     executor: docker/docker
     steps:
-      - run: echo $(ls -la)
+      - checkout
+      - run:
+          command: echo $(ls -la)
       - docker/check
       - docker/dockerlint
       - docker/build:
