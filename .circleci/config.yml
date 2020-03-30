@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   maven_build_and_test:
-    executor: default
+    executor: maven/default
     steps:
       - maven/test
 
