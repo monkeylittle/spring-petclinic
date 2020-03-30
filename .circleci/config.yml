@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   docker_build:
-    executor: docker/machine
+    executor: docker/docker
     steps:
       - docker/publish:
           deploy: false
