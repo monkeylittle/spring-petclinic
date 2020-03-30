@@ -4,11 +4,6 @@ orbs:
   docker: circleci/docker@1.0.0
   maven: circleci/maven@1.0.0
 
-jobs:
-  build-without-publishing:
-    executor: docker/docker
-    steps
-
 workflows:
   build_test_release:
     jobs:
