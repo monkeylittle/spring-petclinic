@@ -8,6 +8,6 @@ workflows:
   build_test_release:
     jobs:
       - maven/test # checkout, build, test, and upload test results
-      - docker_build:
+      - docker/publish:
           requires:
             - maven/test
