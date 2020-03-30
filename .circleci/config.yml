@@ -8,4 +8,4 @@ workflows:
   build_test_release:
     jobs:
       - maven/test # checkout, build, test, and upload test results
-      - docker/check-and-build-only
+      - docker/build-without-publishing
