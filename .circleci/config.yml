@@ -4,8 +4,15 @@ orbs:
   docker: circleci/docker@1.0.0
   maven: circleci/maven@1.0.0
 
+jobs:
+  build-without-publishing:
+    executor: docker/docker
+    steps
+
 workflows:
   build_test_release:
     jobs:
       - maven/test # checkout, build, test, and upload test results
-      - docker/build-without-publishing
+      - docker/publish:
+          deploy: false
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
