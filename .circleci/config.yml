@@ -19,9 +19,9 @@ workflows:
       - maven/test:
           post-steps:
             - persist_to_workspace:
-                root: ./target
+                root: ./
                 paths:
-                  - *.jar
+                  - target/*.jar
       - docker_build:
           requires:
             - maven/test
