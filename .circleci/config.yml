@@ -28,5 +28,5 @@ workflows:
             - maven/test
           pre-steps:
             - attach_workspace:
-                at: /tmp/target
-            - run: echo $(ls -la)
+                at: /tmp/workspace
+            - run: echo $(ls -la /tmp/workspace/target)
