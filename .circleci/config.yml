@@ -8,8 +8,7 @@ jobs:
   docker_build:
     executor: docker/docker
     steps:
-      - docker/publish:
-          deploy: false
+      - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
 
 workflows:
