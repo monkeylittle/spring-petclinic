@@ -17,7 +17,7 @@ jobs:
 workflows:
   build_test_release:
     jobs:
-      - maven/test
+      - maven/test:
           post-steps:
             - persist_to_workspace:
                 root: workspace
