@@ -14,4 +14,7 @@ jobs:
 workflows:
   build_test_release:
     jobs:
+      - maven/test
       - docker_build
+        requires:
+          - maven/test
