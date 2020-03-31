@@ -36,6 +36,6 @@ workflows:
           pre-steps:
             - attach_workspace:
                 at: /tmp/workspace
-            - run: echo $(ls -la /tmp/workspace/target/classes)
+            - run: cat /tmp/workspace/target/classes/build-info.env
             - run: source /tmp/workspace/target/classes/build-info.env
             - run: echo $MAVEN_BUILD_NAME
