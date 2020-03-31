@@ -18,7 +18,7 @@ jobs:
           tag: latest
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: $MAVEN_BUILD_VERSION,latest
+          tag: $CIRCLE_BUILD_NUM,latest
 
 workflows:
   build_test_release:
@@ -37,5 +37,5 @@ workflows:
             - attach_workspace:
                 at: /tmp/workspace
             - run: cat /tmp/workspace/target/classes/build-info.env
-            - run: source /tmp/workspace/target/classes/build-info.env
+            - run: echo 'source /tmp/workspace/target/classes/build-info.env' >> $BASH_ENV
             - run: echo $MAVEN_BUILD_NAME
