@@ -18,7 +18,7 @@ jobs:
           tag: latest
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: $CIRCLE_SHA1,latest
+          tag: $MAVEN_BUILD_VERSION,latest
 
 workflows:
   build_test_release:
@@ -28,6 +28,7 @@ workflows:
             - persist_to_workspace:
                 root: ./
                 paths:
+                  - target/classes/build-info.env
                   - target/*.jar
       - docker_build:
           requires:
@@ -35,4 +36,4 @@ workflows:
           pre-steps:
             - attach_workspace:
                 at: /tmp/workspace
-            - run: echo $(ls -la /tmp/workspace/target)
+            - run: source /tmp/workspace/build-info.env
