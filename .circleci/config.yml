@@ -12,6 +12,7 @@ jobs:
       - docker/check
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: $MAVEN_BUILD_VERSION
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
@@ -19,7 +20,7 @@ jobs:
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: $CIRCLE_BUILD_NUM,latest
+          tag: $MAVEN_BUILD_VERSION,latest
 
 workflows:
   build_test_release:
