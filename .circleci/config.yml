@@ -13,9 +13,11 @@ jobs:
       - docker/check
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
       - docker/build:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: latest
+          extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: $CIRCLE_BUILD_NUM,latest
@@ -36,6 +38,4 @@ workflows:
           pre-steps:
             - attach_workspace:
                 at: /tmp/workspace
-            - run: cat /tmp/workspace/target/classes/build-info.env
             - run: echo 'source /tmp/workspace/target/classes/build-info.env' >> $BASH_ENV
-            - run: echo $MAVEN_BUILD_NAME
