@@ -36,5 +36,5 @@ workflows:
           pre-steps:
             - attach_workspace:
                 at: /tmp/workspace
-            - run: echo $(ls -la /tmp/workspace)
-            - run: source /tmp/workspace/build-info.env
+            - run: echo $(ls -la /tmp/workspace/target/classes)
+            - run: source /tmp/workspace/target/classes/build-info.env
