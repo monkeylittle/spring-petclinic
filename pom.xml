@@ -131,6 +131,14 @@
 
   <build>
     <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
@@ -275,6 +283,22 @@
         </dependencies>
       </plugin>
     </plugins>
+  <resources>
+    <resource>
+      <directory>src/main/resources</directory>
+      <filtering>true</filtering>
+      <includes>
+        <include>**/build-info.env</include>
+      </includes>
+    </resource>
+    <resource>
+      <directory>src/main/resources</directory>
+      <filtering>false</filtering>
+      <excludes>
+        <exclude>**/build-info.env</exclude>
+      </excludes>
+    </resource>
+  </resources>
   </build>
 
   <!-- Apache 2 license -->
