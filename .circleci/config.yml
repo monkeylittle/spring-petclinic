@@ -37,6 +37,6 @@ workflows:
             - maven/test
           pre-steps:
             - attach_workspace:
-                at: /tmp/workspace
-            - run: echo $(ls -la /tmp/workspace/target)
-            - run: echo 'source /tmp/workspace/target/classes/build-info.env' >> $BASH_ENV
+                at: ./
+            - run: echo $(ls -la target)
+            - run: echo 'source ./target/classes/build-info.env' >> $BASH_ENV
