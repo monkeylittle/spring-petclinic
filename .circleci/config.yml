@@ -10,15 +10,15 @@ jobs:
     executor: docker/docker
     steps:
       - setup_remote_docker
-      - aws-ecr/build-image
+      - aws-ecr/build-image:
           repo: $CIRCLE_PROJECT_REPONAME
           tag: $MAVEN_BUILD_VERSION
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
-      - aws-ecr/build-image
+      - aws-ecr/build-image:
           repo: $CIRCLE_PROJECT_REPONAME
           tag: latest
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
-      - aws-ecr/push-image
+      - aws-ecr/push-image:
         repo: $CIRCLE_PROJECT_REPONAME
         tag: $MAVEN_BUILD_VERSION,latest
 
