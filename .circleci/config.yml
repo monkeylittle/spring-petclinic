@@ -1,26 +1,26 @@
 version: 2.1
 
 orbs:
-  docker: circleci/docker@1.0.0
+  aws-ecs: circleci/aws-ecs@1.1.0
+  aws-ecr: circleci/aws-ecr@6.8.0
   maven: circleci/maven@1.0.0
 
 jobs:
-  docker_build:
+  docker_build_and_push:
     executor: docker/docker
     steps:
       - setup_remote_docker
-      - docker/check
-      - docker/build:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+      - aws-ecr/build-image
+          repo: $CIRCLE_PROJECT_REPONAME
           tag: $MAVEN_BUILD_VERSION
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
-      - docker/build:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+      - aws-ecr/build-image
+          repo: $CIRCLE_PROJECT_REPONAME
           tag: latest
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
-      - docker/push:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: $MAVEN_BUILD_VERSION,latest
+      - aws-ecr/push-image
+        repo: $CIRCLE_PROJECT_REPONAME
+        tag: $MAVEN_BUILD_VERSION,latest
 
 workflows:
   build_test_release:
@@ -32,7 +32,7 @@ workflows:
                 paths:
                   - target/classes/build-info.env
                   - target/*.jar
-      - docker_build:
+      - docker_build_and_push:
           requires:
             - maven/test
           pre-steps:
