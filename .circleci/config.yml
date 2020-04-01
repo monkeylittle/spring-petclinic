@@ -7,7 +7,6 @@ orbs:
 
 jobs:
   docker_build_and_push:
-    executor: default
     steps:
       - setup_remote_docker
       - aws-ecr/build-image:
