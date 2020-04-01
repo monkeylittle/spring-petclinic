@@ -3,12 +3,12 @@ version: 2.1
 orbs:
   aws-ecs: circleci/aws-ecs@1.1.0
   aws-ecr: circleci/aws-ecr@6.8.0
+  docker: circleci/docker@1.0.0
   maven: circleci/maven@1.0.0
 
 jobs:
   docker_build_and_push:
-    docker:
-      - image: alpine:3.4
+    executer: docker:docker
     steps:
       - setup_remote_docker
       - aws-ecr/build-image:
