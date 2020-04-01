@@ -8,7 +8,7 @@ orbs:
 
 jobs:
   docker_build_and_push:
-    executer: docker:docker
+    executer: docker/docker
     steps:
       - setup_remote_docker
       - aws-ecr/build-image:
