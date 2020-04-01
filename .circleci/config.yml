@@ -7,6 +7,8 @@ orbs:
 
 jobs:
   docker_build_and_push:
+    docker:
+      - image: alpine:3.4
     steps:
       - setup_remote_docker
       - aws-ecr/build-image:
