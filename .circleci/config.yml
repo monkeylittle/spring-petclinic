@@ -19,8 +19,8 @@ jobs:
           tag: latest
           extra_build_args: '--build-arg MAVEN_BUILD_NAME=$MAVEN_BUILD_NAME'
       - aws-ecr/push-image:
-        repo: $CIRCLE_PROJECT_REPONAME
-        tag: $MAVEN_BUILD_VERSION,latest
+          repo: $CIRCLE_PROJECT_REPONAME
+          tag: $MAVEN_BUILD_VERSION,latest
 
 workflows:
   build_test_release:
